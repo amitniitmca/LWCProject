@@ -1,7 +1,17 @@
 <template>
-    <lightning-card title="Hello LWC" icon-name="standard:account">
+    <lightning-card title="Hello LWC" icon-name="custom:custom39">
         <div class="slds-p-horizontal_small">
-            Welcome to Lightning Web Components
+            <lightning-input    type="text" variant="standard" 
+                                name="username" label="User Name :"
+                                onchange={handleTextChange}>
+            </lightning-input>
+            <br>
+            <lightning-button variant="brand-outline" label="Submit" onclick={handleSubmitClick}>
+            </lightning-button>
+            <br>
+            <br>
+            <br>
+            Hello {userName}, How are you?
         </div>
     </lightning-card>
 </template>

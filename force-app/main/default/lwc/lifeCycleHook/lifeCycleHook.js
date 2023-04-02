@@ -6,4 +6,9 @@ export default class LifeCycleHook extends LightningElement {
         let comp = this.template.querySelector("c-lc-hook-child");
         comp.childmethod();
     }
+
+    handleShowClick(){
+        let comp = this.template.querySelector("c-read-employee");
+        comp.show();
+    }
 }

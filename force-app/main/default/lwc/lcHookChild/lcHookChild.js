@@ -1,13 +1,10 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 export default class LcHookChild extends LightningElement {
-    constructor(){
-        super();
-        console.log('CHILD: Constructor Called');    
-    }
-
-    connectedCallback(){
-        console.log('CHILD: Connected Callback Called');
-    }
     
+    @api message;
+
+    @api childmethod(){
+        this.message = "Value is Changed";
+    }
 }

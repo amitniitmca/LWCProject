@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Hello LWC" icon-name="custom:custom39">
+        <div class="slds-p-horizontal_small">
+            <lightning-input    type="text" variant="standard" 
+                                name="number" label="Enter Number :"
+                                onchange={handleNumberChange}>
+            </lightning-input>
+            <br>
+            <lightning-button variant="brand-outline" label="Submit" onclick={handleSubmitClick}>
+            </lightning-button>
+            <br>
+            <br>
+            <br>
+            {message}
+        </div>
+    </lightning-card>
+</template>

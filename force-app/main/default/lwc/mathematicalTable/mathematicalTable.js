@@ -3,7 +3,7 @@ import { LightningElement } from 'lwc';
 export default class MathematicalTable extends LightningElement {
 
     num;
-    message = ;
+    message;
 
     handleNumberChange(event){
         this.num = event.detail.value;

@@ -1,0 +1,29 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Account" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12">
+                    <lightning-input type="text" variant="standard" label="Account Name:" onchange={handleAccountNameChange} value={accountName}>
+                    </lightning-input>
+                    <lightning-input type="text" variant="standard" label="Billing State:" onchange={handleBillingStateChange} value={billingState}>
+                    </lightning-input>
+                    <br>
+                    <lightning-button variant="brand" label="Add Account" onclick={handleAddAccountClick}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <div style="height:200px;">
+                        <lightning-datatable
+                            key-field="id"
+                            data={dataList}
+                            show-row-number-column
+                            hide-checkbox-column
+                            columns={columnsList}>
+                        </lightning-datatable>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

@@ -2,6 +2,7 @@ import { LightningElement, track, wire } from 'lwc';
 import getAccounts from '@salesforce/apex/AccountService.getAccounts';
 import addAccount from '@salesforce/apex/AccountService.addAccount';
 import {refreshApex} from '@salesforce/apex';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class AccountDetailsComponent extends LightningElement {
 
@@ -40,17 +41,27 @@ export default class AccountDetailsComponent extends LightningElement {
 
     handleAddAccountClick(){
         if((this.accountName == null || this.accountName == '') || (this.billingState == null || this.billingState == '')){
-            alert("ERROR: Account Name and Billing State are compulsory values to add an account!");
+            const errorToast = new ShowToastEvent({
+                title : 'Error',
+                message : "ERROR: Account Name and Billing State are compulsory values to add an account!",
+                variant : 'error'
+            });
+            this.dispatchEvent(errorToast);
         }
         else{
             addAccount({acName: this.accountName, bState : this.billingState})
-            .then((data)=>{
-                alert('SUCCESS: Account Created Successfully with Id: '+data);
+            .then(data =>{
+                const successToast = new ShowToastEvent({
+                                        title : 'Success',
+                                        message : 'SUCCESS: Account Created Successfully with Id: '+data,
+                                        variant : 'success'
+                                    });
+                this.dispatchEvent(successToast);
                 refreshApex(this.wiredAccountResult);
                 this.accountName = "";
                 this.billingState = "";
-            }).catch((error)=>{
-                console.log('ERROR : '+error);
+            }).catch(error =>{
+                console.log('ERROR : '+JSON.stringify(error));
             });
         }
     }

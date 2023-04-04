@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="Hello" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <template if:true={studentRecord}>
+                <label>Admission Number: {studentRecord.fields.Name.value}</label> <br>
+                <label>Student Name : {studentRecord.fields.First_Name__c.value} {studentRecord.fields.Last_Name__c.value}</label> <br>
+                <label>Age : {studentRecord.fields.Age__c.value} </label>
+            </template>
+            <template if:true={error}>
+                <div style="color:red;">
+                    <label>Sorry! No record to show!</label> <br>
+                    <label>{error.body.message}</label>
+                </div>
+            </template>
+        </div>
+        
+    </lightning-card>
+</template>

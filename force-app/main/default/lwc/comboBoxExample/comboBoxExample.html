@@ -1,5 +1,5 @@
 <template>
-    <lightning-card title="Hello Combobox" icon-name="standard:account">
+    <lightning-card title="Hello Combobox" icon-name="custom:custom31">
         <div class="slds-p-horizontal_small">
             <lightning-combobox
                 label="Subjects"
@@ -7,6 +7,17 @@
                 placeholder="Select Subject"
                 options={subjectOptions}
                 onchange={handleSubjectChange} >
+            </lightning-combobox>
+        </div>
+    </lightning-card>
+    <lightning-card title="My Account" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-combobox
+                label="Account Type"
+                value={typeValue}
+                placeholder="Select Type"
+                options={typeOptions}
+                onchange={handleTypeChange} >
             </lightning-combobox>
         </div>
     </lightning-card>

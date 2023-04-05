@@ -1,4 +1,5 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
+import getAccountTypeOptions from '@salesforce/apex/AccountService.getAccountTypeOptions';
 
 export default class ComboBoxExample extends LightningElement {
 
@@ -14,7 +15,27 @@ export default class ComboBoxExample extends LightningElement {
         {label: 'JS Language', value: 'JS'}
     ];
 
+    typeValue;
+    typeOptions;
+
+    @wire(getAccountTypeOptions)
+    wiredGetAccountTypeOptions({data, error}){
+        if(data){
+            this.typeOptions = [];
+            for(let item in data){
+                this.typeOptions.push({label : item, value : data[item]});
+            }
+        }
+        if(error){
+            console.log(error);
+        }
+    }
+
     handleSubjectChange(event){
         this.subjectValue = event.detail.value;
+    }
+
+    handleTypeChange(){
+
     }
 }

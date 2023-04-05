@@ -13,4 +13,17 @@ public with sharing class AccountService {
         INSERT acc;
         return acc.Id;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static Map<String, String> getAccountTypeOptions(){
+        Schema.DescribeFieldResult dfr = Account.Type.getDescribe();
+        List<Schema.PicklistEntry> entries = dfr.getPicklistValues();
+        Map<String, String> values = new Map<String, String>();
+        for(Schema.PicklistEntry entry : entries){
+            if(entry.active == true){
+                values.put(entry.getLabel(), entry.getValue());
+            }
+        }
+        return values;
+    }
 }

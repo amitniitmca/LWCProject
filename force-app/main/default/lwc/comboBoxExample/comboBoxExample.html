@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Hello Combobox" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-combobox
+                label="Subjects"
+                value={subjectValue}
+                placeholder="Select Subject"
+                options={subjectOptions}
+                onchange={handleSubjectChange} >
+            </lightning-combobox>
+        </div>
+    </lightning-card>
+</template>

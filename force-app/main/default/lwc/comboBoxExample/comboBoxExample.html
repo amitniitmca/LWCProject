@@ -12,13 +12,18 @@
     </lightning-card>
     <lightning-card title="My Account" icon-name="standard:account">
         <div class="slds-p-horizontal_small">
-            <lightning-combobox
-                label="Account Type"
-                value={typeValue}
-                placeholder="Select Type"
-                options={typeOptions}
-                onchange={handleTypeChange} >
-            </lightning-combobox>
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+            <template if:false={isLoading}>
+                <lightning-combobox
+                    label="Account Type"
+                    value={typeValue}
+                    placeholder="Select Type"
+                    options={typeOptions}
+                    onchange={handleTypeChange} >
+                </lightning-combobox>
+            </template>
         </div>
     </lightning-card>
 </template>

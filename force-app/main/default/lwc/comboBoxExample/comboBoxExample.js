@@ -1,8 +1,8 @@
 import { LightningElement, wire } from 'lwc';
-// import getAccountTypeOptions from '@salesforce/apex/AccountService.getAccountTypeOptions';
-import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
-import ACCOUNT_TYPE from '@salesforce/schema/Account.Type';
-import ACCOUNT_OBJECT from '@salesforce/schema/Account';
+import getAccountTypeOptions from '@salesforce/apex/AccountService.getAccountTypeOptions';
+// import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
+// import ACCOUNT_TYPE from '@salesforce/schema/Account.Type';
+// import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 
 export default class ComboBoxExample extends LightningElement {
 
@@ -21,6 +21,27 @@ export default class ComboBoxExample extends LightningElement {
     typeValue;
     typeOptions;
     recordTypeId;
+    isLoading = true;
+    
+    connectedCallback(){
+        setTimeout(() => {
+            this.getPicklist();
+          }, 10000);
+    }
+
+    getPicklist(){
+        getAccountTypeOptions()
+        .then(data => {
+            this.typeOptions = [];
+            for(let item in data){
+                this.typeOptions.push({label : item, value : data[item]});
+            }
+            this.isLoading = false;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }
     // @wire(getAccountTypeOptions)
     // wiredGetAccountTypeOptions({data, error}){
     //     if(data){
@@ -34,25 +55,26 @@ export default class ComboBoxExample extends LightningElement {
     //     }
     // }
 
-    @wire(getObjectInfo, {objectApiName : ACCOUNT_OBJECT})
-    wiredGetObjectInfo({data, error}){
-        if(data){
-            this.recordTypeId = data.defaultRecordTypeId;
-        }
-        if(error){
-            console.log(error);
-        }
-    }
+    // @wire(getObjectInfo, {objectApiName : ACCOUNT_OBJECT})
+    // wiredGetObjectInfo({data, error}){
+    //     if(data){
+    //         this.recordTypeId = data.defaultRecordTypeId;
+    //         this.getPicklist();
+    //     }
+    //     if(error){
+    //         console.log(error);
+    //     }
+    // }
 
-    @wire(getPicklistValues, {recordTypeId : '$recordTypeId', fieldApiName : ACCOUNT_TYPE})
-    wiredGetPicklistValues({data, error}){
-        if(data){
-            this.typeOptions = data.values;
-        }
-        if(error){
-            console.log(error);
-        }
-    }
+    // @wire(getPicklistValues, {recordTypeId : '$recordTypeId', fieldApiName : ACCOUNT_TYPE})
+    // wiredGetPicklistValues({data, error}){
+    //     if(data){
+    //         this.typeOptions = data.values;
+    //     }
+    //     if(error){
+    //         console.log(error);
+    //     }
+    // }
 
     handleSubjectChange(event){
         this.subjectValue = event.detail.value;

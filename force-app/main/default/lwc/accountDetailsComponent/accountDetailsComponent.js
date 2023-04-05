@@ -3,7 +3,8 @@ import getAccounts from '@salesforce/apex/AccountService.getAccounts';
 import addAccount from '@salesforce/apex/AccountService.addAccount';
 import {refreshApex} from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-
+import { loadStyle } from 'lightning/platformResourceLoader';
+import mystyle from '@salesforce/resourceUrl/MyStyle';
 export default class AccountDetailsComponent extends LightningElement {
 
     accountName;
@@ -17,6 +18,14 @@ export default class AccountDetailsComponent extends LightningElement {
     ];
 
     wiredAccountResult;
+
+    connectedCallback(){
+        loadStyle(this, mystyle+'/MultiLineToast.css');
+        loadStyle(this, mystyle+'/NoHeader.css');
+        loadStyle(this, mystyle+'/style.css');
+
+    }
+
 
     @wire(getAccounts)
     wiredGetAccounts(result){
@@ -53,7 +62,7 @@ export default class AccountDetailsComponent extends LightningElement {
             .then(data =>{
                 const successToast = new ShowToastEvent({
                                         title : 'Success',
-                                        message : 'SUCCESS: Account Created Successfully with Id: '+data,
+                                        message : 'SUCCESS: Account Created Successfully!\nAccount Id: '+data,
                                         variant : 'success'
                                     });
                 this.dispatchEvent(successToast);

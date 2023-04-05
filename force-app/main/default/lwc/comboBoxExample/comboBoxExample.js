@@ -1,5 +1,8 @@
 import { LightningElement, wire } from 'lwc';
-import getAccountTypeOptions from '@salesforce/apex/AccountService.getAccountTypeOptions';
+// import getAccountTypeOptions from '@salesforce/apex/AccountService.getAccountTypeOptions';
+import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
+import ACCOUNT_TYPE from '@salesforce/schema/Account.Type';
+import ACCOUNT_OBJECT from '@salesforce/schema/Account';
 
 export default class ComboBoxExample extends LightningElement {
 
@@ -17,14 +20,34 @@ export default class ComboBoxExample extends LightningElement {
 
     typeValue;
     typeOptions;
+    recordTypeId;
+    // @wire(getAccountTypeOptions)
+    // wiredGetAccountTypeOptions({data, error}){
+    //     if(data){
+    //         this.typeOptions = [];
+    //         for(let item in data){
+    //             this.typeOptions.push({label : item, value : data[item]});
+    //         }
+    //     }
+    //     if(error){
+    //         console.log(error);
+    //     }
+    // }
 
-    @wire(getAccountTypeOptions)
-    wiredGetAccountTypeOptions({data, error}){
+    @wire(getObjectInfo, {objectApiName : ACCOUNT_OBJECT})
+    wiredGetObjectInfo({data, error}){
         if(data){
-            this.typeOptions = [];
-            for(let item in data){
-                this.typeOptions.push({label : item, value : data[item]});
-            }
+            this.recordTypeId = data.defaultRecordTypeId;
+        }
+        if(error){
+            console.log(error);
+        }
+    }
+
+    @wire(getPicklistValues, {recordTypeId : '$recordTypeId', fieldApiName : ACCOUNT_TYPE})
+    wiredGetPicklistValues({data, error}){
+        if(data){
+            this.typeOptions = data.values;
         }
         if(error){
             console.log(error);

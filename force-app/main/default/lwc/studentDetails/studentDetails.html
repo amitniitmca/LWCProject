@@ -1,0 +1,16 @@
+<template>
+   <lightning-card title="Student Details" icon-name="standard:queue">
+    <div class="slds-p-horizontal_small">
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="12">
+                <template if:true={crRecord}>
+                    <c-students-form classroom-records={crRecord}></c-students-form>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item size="12">
+                <!-- Data Table LWC -->
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+   </lightning-card>
+</template>

@@ -1,0 +1,92 @@
+<template>
+    <lightning-card title="Student Form" icon-name="standard:procedure_detail">
+        <div class="slds-p-horizontal_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-input 
+                        type="text" 
+                        variant="standard" 
+                        name="firstName" 
+                        label="First Name:"
+                        value={firstName}
+                        onchange={handleFirstNameChange}
+                        required="true">
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-input 
+                        type="text" 
+                        variant="standard" 
+                        name="lastName" 
+                        label="Last Name:"
+                        value={lastName}
+                        onchange={handleLastNameChange}
+                        required>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-input 
+                        type="date" 
+                        variant="standard" 
+                        name="doj" 
+                        label="Date of Joining:"
+                        value={dateOfJoining}
+                        onchange={handleDateOfJoiningChange}
+                        required>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-combobox
+                        name="classroom"
+                        label="Classroom:"
+                        value={classroomValue}
+                        options={classroomOptions}
+                        onchange={handleClassroomChange}
+                        required>
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-input 
+                        type="number" 
+                        variant="standard" 
+                        name="age" 
+                        label="Age:"
+                        value={age}
+                        onchange={handleAgeChange}>
+                    </lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" class="slds-p-around_xx-small">
+                    <lightning-radio-group 
+                        name="gender"
+                        label="Gender:"
+                        options={genderOptions}
+                        value={genderValue}
+                        type="radio"
+                        onchange={handleGenderChange}>
+                    </lightning-radio-group>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" class="slds-p-around_xx-small">
+                    <lightning-textarea 
+                        name="address" 
+                        label="Address" 
+                        value={address}
+                        onchange={handleAddressChange}>
+                    </lightning-textarea>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" class="slds-p-around_xx-small">
+                    <lightning-button 
+                        variant="brand" 
+                        label="Add" 
+                        onclick={handleAddClick}>
+                    </lightning-button>
+                    &nbsp;&nbsp;
+                    <lightning-button 
+                        variant="brand-outline" 
+                        label="Reset" 
+                        onclick={handleResetClick}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

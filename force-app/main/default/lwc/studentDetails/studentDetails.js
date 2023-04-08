@@ -14,4 +14,9 @@ export default class StudentDetails extends LightningElement {
             console.log(error);
         }
     }
+
+    handleOnInserted(){
+        const obj = this.template.querySelector("c-students-records");
+        obj.refreshData();
+    }
 }

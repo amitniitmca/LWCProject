@@ -79,6 +79,8 @@ export default class StudentsForm extends LightningElement {
                 if(data == true){
                     this.showToast('Success', 'Student Inserted Successfully!','success');
                     this.resetValues();
+                    const myevent = new CustomEvent("inserted");
+                    this.dispatchEvent(myevent);
                 }
                 else{
                     this.showToast('Error', 'Student cannot be inserted!', 'error');

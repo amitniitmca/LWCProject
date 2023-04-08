@@ -4,11 +4,11 @@
         <lightning-layout multiple-rows>
             <lightning-layout-item size="12">
                 <template if:true={crRecord}>
-                    <c-students-form classroom-records={crRecord}></c-students-form>
+                    <c-students-form classroom-records={crRecord} oninserted={handleOnInserted}></c-students-form>
                 </template>
             </lightning-layout-item>
             <lightning-layout-item size="12">
-                <!-- Data Table LWC -->
+                <c-students-records></c-students-records>
             </lightning-layout-item>
         </lightning-layout>
     </div>

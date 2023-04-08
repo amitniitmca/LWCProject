@@ -8,6 +8,17 @@ public with sharing class StudentService {
         }
     }
 
+    @AuraEnabled(cacheable=true)
+    public static List<Student__c> getStudents(){
+        try {
+            return [SELECT Id, First_Name__c, Last_Name__c, Age__c, Gender__c, Joining_Date__c, Classroom__r.Standard__c 
+                    FROM Student__c
+                    ORDER BY CreatedDate DESC];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     @AuraEnabled
     public static Boolean insertStudent(Map<String, Object> values){
         try {
@@ -25,9 +36,7 @@ public with sharing class StudentService {
             if(values.get('address') != null){
                 student.Address__c = (String) values.get('address');
             }
-            System.debug(student);
             INSERT student;
-            System.debug(student);
             return true;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

@@ -1,3 +1,15 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
 <template>
-    
+    <lightning-card  title="Student Records" icon-name="standard:budget">
+        <div class="slds-p-horizontal_small" style="height:200px;">
+            <lightning-datatable
+                key-field="id"
+                data={dataList}
+                show-row-number-column
+                hide-checkbox-column
+                columns={columnsList}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
 </template>

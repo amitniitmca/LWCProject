@@ -18,7 +18,6 @@ export default class StudentsRecords extends LightningElement {
         {label: 'Age', fieldName: 'Age'}
     ];
 
-    pageSizeSet = false;
     wiredStudentRecords;
 
     @wire(getStudents)
@@ -47,14 +46,12 @@ export default class StudentsRecords extends LightningElement {
     }
 
     setPageSizeOptions(){
-        if(this.pageSizeSet == false){
-            this.pageSizeOptions = [];
-            for(let i=1; i<=this.totalRecords; i*=5){
-                this.pageSizeOptions.push({label:i, value:i});
-            }
-            this.pageSize = 1;
-            this.pageSizeSet = true;
+        this.pageSizeOptions = [];
+        for(let i=1; i<=this.totalRecords; i*=5){
+            this.pageSizeOptions.push({label:i, value:''+i});
         }
+        this.pageSizeValue='1';
+        this.pageSize = 1;
     }
 
     @api refreshData(){
@@ -106,7 +103,8 @@ export default class StudentsRecords extends LightningElement {
     }
 
     handlePageSizeChange(event){
-        this.pageSize = event.detail.value;
+        this.pageSizeValue = event.detail.value;
+        this.pageSize = this.pageSizeValue;
         this.paginationHelper();
     }
 }

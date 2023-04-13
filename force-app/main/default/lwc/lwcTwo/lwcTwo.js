@@ -4,6 +4,7 @@ import myMessage from '@salesforce/messageChannel/myMessage__c';
 
 export default class LwcTwo extends LightningElement {
     message;
+
     subscription = null;
 
     @wire(MessageContext)
@@ -39,4 +40,5 @@ export default class LwcTwo extends LightningElement {
             this.message = data.message;
         }
     }
+    
 }

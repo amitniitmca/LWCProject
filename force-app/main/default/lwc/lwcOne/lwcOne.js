@@ -2,6 +2,7 @@ import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { MessageContext, publish } from 'lightning/messageService';
 import myMessage from '@salesforce/messageChannel/myMessage__c';
+
 export default class LwcOne extends LightningElement {
 
     @wire(MessageContext)

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="currentDate" label="Current Date" type="Date" required="true" default="1900-01-01" role="inputOnly"/>
+            <property name="userName" label="Username" type="String" role="outputOnly" />
+            <property name="password" label="Password" type="String" role="outputOnly" />
+            <property name="statusValue" label="Status" type="String" role="outputOnly" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

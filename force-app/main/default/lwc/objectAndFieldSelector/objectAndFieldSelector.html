@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Object and Fields" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12">
+                    <template if:false={objectOptions}>
+                        <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                    </template>
+                    <template if:true={objectOptions}>
+                        <lightning-combobox
+                            name="objects"
+                            label="Select Object:"
+                            value={objectValue}
+                            options={objectOptions}
+                            onchange={handleObjectChange}>
+                        </lightning-combobox>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" >
+                    <template if:true={objectValue}>
+                        <lightning-dual-listbox 
+                            name="fields"
+                            label="Select Fields"
+                            source-label="Available Fields"
+                            selected-label="Selected Fields"
+                            options={fieldOptions}
+                            required-options={requiredOptions}
+                            onchange={handleFieldsChange}>
+                        </lightning-dual-listbox>
+                    </template>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,18 @@
+<template>
+    <lightning-card  title="My Parent LWC" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <span> Child : {messageFromChild}</span>
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12">
+                    <lightning-input type="text" variant="standard" label="Message: " value={message} onchange={handleMessageChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <lightning-button variant="brand" label="Send" value="Send" onclick={handleSendClick}></lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <c-my-child-lwc onsend={handleChildSend}></c-my-child-lwc>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,9 @@
+<template>
+    <lightning-card  title="Amit" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-textarea label="Enter Message" value={message} onchange={handleMessageChange}></lightning-textarea>
+            <br>
+            <lightning-button variant="brand" label="Send" onclick={handleSendClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

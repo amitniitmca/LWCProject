@@ -1,0 +1,13 @@
+<template>
+    <lightning-card  title="Accounts" icon-name="standard:account">
+        <div class="slds-p-horizontal_small">
+            <lightning-input type="text" variant="standard" label="Account Name" value={accountName} onchange={handleAccountNameChange}></lightning-input>
+            <br>
+            <lightning-button variant="brand" label="Create" onclick={handleCreateClick}></lightning-button>
+            <br>
+            <lightning-input type="text" variant="standard" label="Account Type" value={accountType} onchange={handleAccountTypeChange}></lightning-input>
+            <br>
+            <lightning-button variant="brand" label="Get" onclick={handleGetClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
